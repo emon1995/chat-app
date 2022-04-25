@@ -2,14 +2,18 @@ const express = require("express");
 const app = express();
 const socket = require("socket.io");
 const color = require("colors");
+const cors = require("cors");
 const {getCurrentUser, userJoin, userLeave} = require("./dummyuser");
+
+app.use(express());
 
 const port = 8000;
 
+app.use(cors());
 
 var server = app.listen(
     port,
-    console.log(`Server is running in ${process.env.NODE_ENV} on port ${process.env.PORT}`.yellow.bold)
+    console.log(`Server is running on port ${port}`.yellow.bold)
 );
 
 const io = socket(server);
